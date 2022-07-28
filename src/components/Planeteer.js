@@ -1,22 +1,29 @@
-import React from "react";
+import React , {useState} from "react";
 
-function Planeteer() {
+function Planeteer({planeteerItems}) {
+  // Info on what's on the card 
+  const{name , pictureUrl,  bio , twitter , fromUSA } = planeteerItems
+  const[bioRender , setBioRender] = useState({bio})
   return (
     <li className="cards__item">
       <div className="card">
-        <img
-          src={"RENDER IMAGE"}
-          alt={"RENDER PERSON NAME"}
+        <img   
+          src={pictureUrl}
+          alt={name}
           className="card__image"
         />
         <div className="card__content">
-          <div className="card__title">{"RENDER NAME"}</div>
-          <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+          <div className="card__title">{name}</div>
+          <p className="card__text">
+            {
+              bioRender ? <p>{bio}</p> : null 
+            }
+            </p> 
           <div className="card__detail">
-            <p>{"RENDER TWITTER HANDLE"}</p>
+            <p>{twitter}</p>
             <p>
-              {
-                "CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"
+              { 
+              ({fromUSA} == true) ? <p>USA Based</p> : <p>Working Overseas</p>
               }
             </p>
           </div>
